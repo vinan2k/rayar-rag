@@ -133,6 +133,14 @@ Worth knowing before you install rather than after.
 12,000 characters is sent to the model, which is roughly the first fifteen
 pages of a report. The summary does not always say so.
 
+That figure is `SUMMARY_CHAR_LIMIT` in `core/rag.py`, and it is deliberately
+conservative. It exists because a model given too much text can return almost
+nothing at all — one returned three characters and stopped, which renders as
+an empty page and reads as a broken application. On a machine with plenty of
+memory and a model with a large context window, raising it to 30,000 or beyond
+will produce fuller summaries. Raise it and watch what comes back; if summaries
+start arriving short or empty, it is too high for that model.
+
 **One collection is searched at a time.** There is no cross-collection query.
 
 **Uploading is for a handful of documents at a time.** For a directory of
