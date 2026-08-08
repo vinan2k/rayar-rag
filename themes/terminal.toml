@@ -1,0 +1,26 @@
+# Terminal — monospace throughout.
+# For people who spend the day in a shell and want the RAG to match.
+# Headings are mono too, so hierarchy comes from weight and rules, not typeface.
+
+[theme]
+base = "dark"
+
+primaryColor            = "#7FB069"
+backgroundColor         = "#0D0F0D"
+secondaryBackgroundColor = "#161A16"
+textColor               = "#D7DBD5"
+linkColor               = "#9BC98A"
+borderColor             = "#262B26"
+
+font        = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+headingFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+codeFont    = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+
+baseFontSize      = 15
+headingFontSizes  = ["1.5rem", "1.25rem", "1.05rem", "0.95rem", "0.88rem", "0.82rem"]
+headingFontWeights = [700, 700, 500, 500, 500, 500]
+
+baseRadius   = "none"
+buttonRadius = "none"
+showWidgetBorder = true
+linkUnderline    = false

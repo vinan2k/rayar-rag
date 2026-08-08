@@ -1,0 +1,27 @@
+# Rayar RAG — theme.
+#
+# Copy this to config.toml, or let the setup wizard write it. The appearance
+# picker rewrites this file when Apply is pressed, which is why the working
+# copy is not in version control.
+#
+# Presets live in themes/. Their values are copied in rather than referenced,
+# because Streamlit re-reads this file on a rerun but does not re-resolve a
+# pointer to another file.
+
+[theme]
+base = "light"
+primaryColor = "#6B1A2A"
+backgroundColor = "#F7F3EA"
+secondaryBackgroundColor = "#FDFCF9"
+textColor = "#1A1A1A"
+linkColor = "#8A2436"
+borderColor = "#E1DDD5"
+
+[server]
+headless = true
+
+# Streamlit watches for file changes and offers to rerun when it sees one.
+# Because the appearance picker writes this file, that prompt appeared on the
+# first theme change after every server start. Excluding this directory from
+# the watcher removes the prompt without stopping the theme from applying.
+folderWatchBlacklist = [".streamlit"]

@@ -1,0 +1,26 @@
+# Rayar — the default.
+# Maroon and gold on ivory. Serif headings, generous rules, square corners.
+# Reads like a printed report rather than a dashboard.
+
+[theme]
+base = "light"
+
+primaryColor            = "#6B1A2A"
+backgroundColor         = "#F7F3EA"
+secondaryBackgroundColor = "#FDFCF9"
+textColor               = "#1A1A1A"
+linkColor               = "#8A2436"
+borderColor             = "#E1DDD5"
+
+font        = "'Source Sans 3':https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap"
+headingFont = "'Instrument Serif':https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+codeFont    = "'IBM Plex Mono':https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+
+baseFontSize      = 16
+headingFontSizes  = ["2rem", "1.5rem", "1.2rem", "1rem", "0.9rem", "0.8rem"]
+headingFontWeights = [400, 400, 400, 500, 500, 500]
+
+baseRadius   = "none"
+buttonRadius = "none"
+showWidgetBorder = true
+linkUnderline    = false

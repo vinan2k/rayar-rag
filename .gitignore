@@ -1,0 +1,60 @@
+# Configuration and data — never committed.
+#
+# config.yaml holds absolute paths and possibly an API key, and is written by
+# the setup wizard on each installation. config.yaml.example is the template
+# that ships. The same reasoning applies to the Streamlit theme file, which
+# the appearance picker rewrites.
+config.yaml
+.streamlit/config.toml
+
+# The database holds accounts and password hashes.
+rayar_rag.db
+rayar_rag.db-shm
+rayar_rag.db-wal
+*.db
+*.db-shm
+*.db-wal
+
+# Indexed documents and the originals kept alongside them. Someone else's
+# corpus is not part of this project.
+chroma_db/
+ingested_files/
+generated_images/
+voice_inbox/
+
+# Working files from development on the author's machine.
+installation_scripts/
+bakup_files/
+*.bak
+*.bak-*
+*.pre-*
+*.with-*
+app.log
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+venv/
+.venv/
+env/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Working notes, not documentation.
+docs/STATE.md

@@ -1,0 +1,26 @@
+# Paper — for reading, not looking.
+# Near-monochrome. One ink-blue for links and markers, nothing else.
+# Larger base size and tighter heading scale: the text is the interface.
+
+[theme]
+base = "light"
+
+primaryColor            = "#1A1A18"
+backgroundColor         = "#FCFCFA"
+secondaryBackgroundColor = "#F4F3F0"
+textColor               = "#16150F"
+linkColor               = "#1F4E79"
+borderColor             = "#DDDCD7"
+
+font        = "'Source Serif 4':https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+headingFont = "'Source Serif 4':https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+codeFont    = "'IBM Plex Mono':https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+
+baseFontSize      = 17
+headingFontSizes  = ["1.7rem", "1.35rem", "1.15rem", "1rem", "0.92rem", "0.85rem"]
+headingFontWeights = [600, 600, 600, 600, 600, 600]
+
+baseRadius   = "none"
+buttonRadius = "none"
+showWidgetBorder = true
+linkUnderline    = true

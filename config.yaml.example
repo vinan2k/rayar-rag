@@ -1,0 +1,57 @@
+# Rayar RAG configuration.
+#
+# Copy this to config.yaml and edit it, or let the setup wizard write it on
+# first run. Colours and typefaces are not here: they live in
+# .streamlit/config.toml, which the appearance picker rewrites.
+
+app:
+  name: "Rayar RAG"
+  port: 8501
+  host: "0.0.0.0"
+
+backend:
+  # "ollama", or "openai-compatible" for LM Studio, llama.cpp, vLLM, LocalAI.
+  type: "ollama"
+
+  # Ollama's default is 11434. An OpenAI-compatible server usually wants the
+  # /v1 suffix, for example http://localhost:1234/v1
+  url: "http://localhost:11434"
+
+  # Ignored by Ollama. Most local servers accept any value.
+  api_key: ""
+
+  # Left empty, the first available model is used and can be changed in the
+  # page. The embedding model cannot be changed later without rebuilding every
+  # collection, so choose it deliberately.
+  chat_model: ""
+  embed_model: "nomic-embed-text"
+
+  # Ollama only.
+  keep_alive: "5m"
+
+  # Ollama only. Left empty, each model's own context window applies, which on
+  # some models is small enough to refuse a dozen retrieved passages. Raising
+  # it costs memory and cannot exceed what the model was trained for.
+  num_ctx:
+
+storage:
+  chroma_dir: "./chroma_db"
+
+  # A copy of every document added through the page. Kept because changing the
+  # embedding model means rebuilding each collection from its sources.
+  ingested_files: "./ingested_files"
+
+  # Optional second copy, on a drive or network share.
+  backup_path: ""
+
+auth:
+  session_days: 30
+  max_login_attempts: 5
+  lockout_seconds: 60
+
+retrieval:
+  # Passages sent to the model with each question. More is not always better:
+  # a long prompt degrades some models, and every model has a limit.
+  top_k: 15
+  chunk_size: 800
+  chunk_overlap: 100
