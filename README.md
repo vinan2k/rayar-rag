@@ -64,13 +64,17 @@ by hand may break the application in ways that are hard to diagnose.
 Two are needed. With Ollama:
 
 ```bash
-ollama pull qwen3:8b            # writes answers, about 5 GB
+ollama pull phi4                # writes answers, about 9 GB
 ollama pull nomic-embed-text    # indexes documents, about 300 MB
 ```
 
-On a machine with 8 GB of memory or no graphics card, `llama3.2:3b` is a better
-choice than `qwen3:8b`. With 24 GB or more, `qwen2.5:14b` and `phi4` both
-produce longer and more careful answers.
+`phi4` was the most reliable of the models tested here, particularly on
+long documents where others produced almost nothing. It wants a machine
+with 16 GB or more.
+
+On a smaller machine, or one without a graphics card, `qwen3:8b` at about
+5 GB or `llama3.2:3b` at about 2 GB will both work. Expect shorter answers
+and less patience with long documents.
 
 **The embedding model cannot be changed later** without rebuilding every
 collection. Retrieval does not fail loudly when it is changed; it quietly
