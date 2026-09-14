@@ -58,3 +58,7 @@ htmlcov/
 
 # Working notes, not documentation.
 docs/STATE.md
+
+# NiceGUI / Rayar runtime state
+.nicegui/
+.rayar-rag.lock

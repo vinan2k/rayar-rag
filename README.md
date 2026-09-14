@@ -64,17 +64,13 @@ by hand may break the application in ways that are hard to diagnose.
 Two are needed. With Ollama:
 
 ```bash
-ollama pull phi4                # writes answers, about 9 GB
+ollama pull qwen3:8b            # writes answers, about 5 GB
 ollama pull nomic-embed-text    # indexes documents, about 300 MB
 ```
 
-`phi4` was the most reliable of the models tested here, particularly on
-long documents where others produced almost nothing. It wants a machine
-with 16 GB or more.
-
-On a smaller machine, or one without a graphics card, `qwen3:8b` at about
-5 GB or `llama3.2:3b` at about 2 GB will both work. Expect shorter answers
-and less patience with long documents.
+On a machine with 8 GB of memory or no graphics card, `llama3.2:3b` is a better
+choice than `qwen3:8b`. With 24 GB or more, `qwen2.5:14b` and `phi4` both
+produce longer and more careful answers.
 
 **The embedding model cannot be changed later** without rebuilding every
 collection. Retrieval does not fail loudly when it is changed; it quietly
@@ -114,6 +110,41 @@ right, or restart the server.
 
 ---
 
+## Indexing a folder on a schedule
+
+`watch.py` indexes whatever has appeared in a folder and moves each file aside
+once it is done, so it can be run repeatedly without repeating work.
+
+A subfolder becomes a collection:
+
+```
+watch/
+  client-reports/     documents here go to the collection "client-reports"
+  market-research/    and here to "market-research"
+  stray.pdf           and a loose file to watch.default_collection
+```
+
+Set `watch.folder` in `config.yaml`, then:
+
+```bash
+python watch.py --dry-run     # report what would happen, change nothing
+python watch.py               # index it
+```
+
+On a schedule, every morning at seven:
+
+```
+0 7 * * * cd /path/to/rayar-rag && venv/bin/python watch.py --quiet >> watch.log 2>&1
+```
+
+Indexed files move to a `-processed` folder, unreadable ones to `-failed`. A
+file that yields no text is usually scanned, and there is no OCR. Moving a file
+back into the watched folder is enough to have it tried again.
+
+It reads the same `config.yaml` as the application, so the embedding model is
+necessarily the same one. That matters: an embedding model that differed
+between the two would degrade retrieval without erroring.
+
 ## Accounts
 
 The first account created is an administrator: it can see every collection,
@@ -133,18 +164,10 @@ Worth knowing before you install rather than after.
 12,000 characters is sent to the model, which is roughly the first fifteen
 pages of a report. The summary does not always say so.
 
-That figure is `SUMMARY_CHAR_LIMIT` in `core/rag.py`, and it is deliberately
-conservative. It exists because a model given too much text can return almost
-nothing at all — one returned three characters and stopped, which renders as
-an empty page and reads as a broken application. On a machine with plenty of
-memory and a model with a large context window, raising it to 30,000 or beyond
-will produce fuller summaries. Raise it and watch what comes back; if summaries
-start arriving short or empty, it is too high for that model.
-
 **One collection is searched at a time.** There is no cross-collection query.
 
-**Uploading is for a handful of documents at a time.** For a directory of
-hundreds, index it with a script rather than through the browser.
+**Uploading through the browser is for a handful of documents at a time.**
+For a directory of hundreds, use `watch.py` (below).
 
 **It is single-user in practice.** Several people can have accounts, but the
 application is not built for concurrent load.

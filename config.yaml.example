@@ -49,6 +49,16 @@ auth:
   max_login_attempts: 5
   lockout_seconds: 60
 
+watch:
+  # Used by watch.py, which indexes whatever appears in a folder and is meant
+  # to be run on a schedule. A subfolder becomes a collection, so dropping a
+  # file into watch/client-reports puts it in the collection of that name.
+  # Files are moved aside once indexed, so the same work is never repeated.
+  folder: ""
+  processed: ""                  # blank puts it beside the watched folder
+  failed: ""
+  default_collection: "inbox"    # for files not in a subfolder
+
 retrieval:
   # Passages sent to the model with each question. More is not always better:
   # a long prompt degrades some models, and every model has a limit.

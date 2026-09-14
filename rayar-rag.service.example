@@ -1,0 +1,16 @@
+[Unit]
+Description=Rayar RAG NiceGUI
+After=network.target
+
+[Service]
+Type=simple
+User=ai
+WorkingDirectory=/home/ai/rayar-rag-oss
+Environment=RAYAR_NICEGUI_PORT=8501
+Environment=RAYAR_NICEGUI_STORAGE_SECRET=CHANGE_THIS_TO_A_LONG_RANDOM_SECRET
+ExecStart=/home/ai/rayar-rag-oss/venv/bin/python /home/ai/rayar-rag-oss/nicegui_app.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

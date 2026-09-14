@@ -54,6 +54,12 @@ DEFAULTS: Dict[str, Any] = {
         "max_login_attempts": 5,
         "lockout_seconds": 60,
     },
+    "watch": {
+        "folder": "",                  # scheduled ingest reads from here
+        "processed": "",               # blank puts it beside the watched folder
+        "failed": "",
+        "default_collection": "inbox", # for files not in a subfolder
+    },
     "retrieval": {
         "top_k": 15,
         "chunk_size": 800,
