@@ -7,7 +7,7 @@ from collections.abc import Callable
 
 from nicegui import run, ui
 
-from core import rag
+from core import doc_links, rag
 from core.models import ContextTooSmall
 
 
@@ -63,8 +63,13 @@ class SourcePanel:
                     ui.html(f'<div class="rr-empty">{html.escape(self.empty_message)}</div>')
                     return
 
+                collection = self.get_collection()
                 for i, (name, count) in enumerate(self.sources, 1):
                     unit = "passage" if count == 1 else "passages"
+                    path = doc_links.resolve(name, self.cfg, collection)
+                    # The row stays plain HTML so the grid in themes.py applies
+                    # as written. A NiceGUI container here would insert its own
+                    # element between the grid and its columns.
                     ui.html(
                         '<div class="rr-source-row">'
                         f'<span class="rr-source-n">{i}</span><div>'
@@ -72,6 +77,12 @@ class SourcePanel:
                         f'<div class="rr-source-count">{count} {unit}</div>'
                         '</div></div>'
                     )
+                    if path:
+                        ui.button(
+                            "Download",
+                            icon="download",
+                            on_click=lambda p=path, n=name: ui.download(p, n),
+                        ).props("flat dense size=sm no-caps").classes("rr-dl")
 
                 with ui.element("div").classes("rr-open"):
                     ui.html('<div class="rr-eyebrow">Open one</div>')

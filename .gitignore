@@ -62,3 +62,9 @@ docs/STATE.md
 # NiceGUI / Rayar runtime state
 .nicegui/
 .rayar-rag.lock
+doc_index.json
+
+# Machine-specific operational scripts: these carry absolute paths and
+# systemd service names for one installation.
+nightly-watch.sh
+weekly-backup.sh
