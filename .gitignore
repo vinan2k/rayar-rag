@@ -68,3 +68,9 @@ doc_index.json
 # systemd service names for one installation.
 nightly-watch.sh
 weekly-backup.sh
+
+# Maps every indexed document to its path on this machine. Useful locally,
+# but it is a map of one person's archive and does not belong in the repo.
+SOURCES.md
+SOURCES_manifest.csv
+doc_index.json
